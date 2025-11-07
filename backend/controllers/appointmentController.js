@@ -3,12 +3,44 @@ import Appointment from "../models/appointmentModel.js";
 // Book Appointment
 export const bookAppointment = async (req, res) => {
   try {
-    const { userId, doctorId, date, time } = req.body;
-    const newAppt = new Appointment({ userId, doctorId, date, time });
+    const {
+      userId,
+      userName,
+      email,
+      doctorId,
+      doctorName,
+      speciality,
+      date,
+      time,
+    } = req.body;
+
+    // validation
+    if (!userId || !doctorId || !date || !time) {
+      return res.status(400).json({ success: false, message: "Missing fields" });
+    }
+
+    const newAppt = new Appointment({
+      userId,
+      userName,
+      email,
+      doctorId,
+      doctorName,
+      speciality,
+      date,
+      time,
+    });
+
     await newAppt.save();
-    res.json({ message: "Appointment booked successfully" });
+    res.json({
+      success: true,
+      message: "Appointment booked successfully",
+      data: newAppt,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Error booking appointment" });
+    console.error("Error booking appointment:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Error booking appointment" });
   }
 };
 
@@ -16,8 +48,25 @@ export const bookAppointment = async (req, res) => {
 export const getAppointments = async (req, res) => {
   try {
     const appointments = await Appointment.find();
-    res.json(appointments);
+    res.json({ success: true, data: appointments });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching appointments" });
+    console.error("Error fetching appointments:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching appointments" });
+  }
+};
+
+// Cancel appointment
+export const cancelAppointment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Appointment.findByIdAndDelete(id);
+    res.json({ success: true, message: "Appointment cancelled successfully" });
+  } catch (error) {
+    console.error("Cancel Appointment Error:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Error cancelling appointment" });
   }
 };

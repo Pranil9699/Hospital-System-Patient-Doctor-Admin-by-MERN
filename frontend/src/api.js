@@ -38,13 +38,36 @@ export const loginUser = async (userData) => {
 // Get Doctors
 export const getDoctors = async () => {
   try {
-    const res = await api.get("/doctors");
+    const res = await api.get("/admin/doctors");
+    console.log(res)
     return res.data;
   } catch (error) {
+    alert(error.message)
     console.error("Get Doctors Error:", error);
     return { success: false, message: "Failed to fetch doctors" };
   }
 };
+// Get User Profile
+export const getUserProfile = async (userId) => {
+  try {
+    const res = await api.get(`/users/profile/${userId}`);
+    return res.data;
+  } catch (error) {
+    console.error("Get User Profile Error:", error);
+    return { success: false, message: "Failed to fetch user profile" };
+  }
+};
+
+export const updateUserProfile = async (userData) => {
+  try {
+    const res = await api.put("/users/update-profile", userData);
+    return res.data;
+  } catch (error) {
+    console.error("Profile Update Error:", error);
+    return { success: false, message: "Failed to update profile" };
+  }
+};
+
 
 // Book Appointment
 export const bookAppointment = async (appointmentData) => {
@@ -65,5 +88,40 @@ export const getAppointments = async () => {
   } catch (error) {
     console.error("Get Appointments Error:", error);
     return { success: false, message: "Failed to fetch appointments" };
+  }
+};
+
+// Cancel Appointment
+export const cancelAppointment = async (id) => {
+  try {
+    const res = await api.delete(`/appointments/${id}`);
+    return res.data;
+  } catch (error) {
+    console.error("Cancel Appointment Error:", error);
+    return { success: false, message: "Failed to cancel appointment" };
+  }
+};
+
+
+// 🩺 Fetch All Doctors
+export const fetchAllDoctors = async () => {
+  try {
+    const res = await api.get("/doctors");
+    return res.data;
+  } catch (error) {
+    console.error("❌ Fetch All Doctors Error:", error);
+    return { success: false, message: "Failed to load doctors" };
+  }
+};
+
+export const getUserAppointments = async (userId) => {
+  try {
+    console.log("hi")
+    const res = await api.get(`/users/appointments/${userId}`);
+    console.log("hi><")
+    return res.data;
+  } catch (error) {
+    console.error("Get User Appointments Error:", error);
+    return { success: false, message: "Failed to fetch user appointments" };
   }
 };

@@ -129,7 +129,7 @@ const Appointment = () => {
           <div className="flex-1 border border-gray-400 rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0">
             <p className="flex items-center gap-2 text-2xl font-medium text-gray-900">
               {docInfo.name}
-              <img className="w-5" src={assets.verified_icon} alt="" />
+              <img  className="w-5" src={assets.verified_icon} alt="" />
             </p>
             <div className="flex items-center gap-2 text-sm mt-1 text-gray-600">
               <p>
@@ -167,7 +167,7 @@ const Appointment = () => {
                   onClick={() => setSlotIndex(index)}
                   className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${
                     slotIndex === index
-                      ? "bg-[#5f6fff] text-white"
+                      ? "bg-[#181818] text-white"
                       : "border border-gray-200"
                   }`}
                   key={index}
@@ -185,7 +185,7 @@ const Appointment = () => {
                   onClick={() => setSlotTime(item.time)}
                   className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
                     item.time === slotTime
-                      ? "bg-[#5f6fff] text-white"
+                      ? "bg-[#181818] text-white"
                       : "text-gray-400 border border-gray-300"
                   }`}
                   key={index}
@@ -197,7 +197,7 @@ const Appointment = () => {
 
           <button
             onClick={handleBookAppointment}
-            className="bg-[#5f6fff] text-white text-sm font-light px-14 py-3 rounded-full my-6"
+            className="bg-[#181818] text-white text-sm font-light px-14 py-3 rounded-full my-6"
           >
             Book an Appointment
           </button>

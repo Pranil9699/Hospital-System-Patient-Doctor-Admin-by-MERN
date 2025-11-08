@@ -9,7 +9,8 @@ const Footer = () => {
                 {/* left */}
                 <div>
                     <img className='mb-5 w-40' src={assets.logo} alt="" />
-                    <p className='w-full md:w-2/3 text-gray-600 leading-6'> change it later in footer section /components/Footer.jsx jnadsjb sadjkndsbjadsjkbbc adskjnds adskjnaskjbdskjbdfs dskjbdskjbdfkjb dsdsuiewiurbdfs </p>
+                    <p className='w-full md:w-2/3 text-gray-600 leading-6'>The Doctor Appointment Booking System, DocEase, is designed to revolutionize how patients connect with doctors
+ </p>
                 </div>
 
 
